@@ -42,6 +42,8 @@ def index():
     # TODO: Below is an example - modify to extract data for your own visuals
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
+    category_means = df.iloc[:, 4:].mean()
+    category_counts = list(category_means.index)
     
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
@@ -62,6 +64,22 @@ def index():
                 'xaxis': {
                     'title': "Genre"
                 }
+            },
+            'data2': [
+                Bar(
+                    x=category_means,
+                    y=category_counts
+                )
+            ],
+
+            'layout2': {
+                'title': 'Class Balance for Each Category',
+                'yaxis': {
+                    'title': "Mean Prevalence"
+                },
+                'xaxis': {
+                    'title': "Category"
+                }
             }
         }
     ]
@@ -72,6 +90,35 @@ def index():
     
     # render web page with plotly graphs
     return render_template('master.html', ids=ids, graphJSON=graphJSON)
+
+
+    # graphs = [
+    #     {
+    #         'data': [
+    #             Bar(
+    #                 x=category_names,
+    #                 y=category_counts
+    #             )
+    #         ],
+    #
+    #         'layout': {
+    #             'title': 'Class Balance for Each Category',
+    #             'yaxis': {
+    #                 'title': "Mean Prevalence"
+    #             },
+    #             'xaxis': {
+    #                 'title': "Category"
+    #             }
+    #         }
+    #     }
+    # ]
+
+    # # encode plotly graphs in JSON
+    # ids = ["graph-{}".format(i) for i, _ in enumerate(graphs)]
+    # graphJSON = json.dumps(graphs, cls=plotly.utils.PlotlyJSONEncoder)
+    #
+    # # render web page with plotly graphs
+    # return render_template('master.html', ids=ids, graphJSON=graphJSON)
 
 
 
