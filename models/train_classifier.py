@@ -34,12 +34,6 @@ def load_data(database_filepath):
     X = df.message.values
     Y = df.iloc[:, 4:]
 
-    # # Drop any column with 0 positives
-    # for column in Y.columns:
-    #     if Y[column].sum() == 0:
-    #         Y = Y.drop(columns=[column])
-    #     else:
-    #         pass
 
     return X, Y
 
