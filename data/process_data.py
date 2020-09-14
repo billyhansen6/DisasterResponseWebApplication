@@ -68,9 +68,7 @@ def save_data(df, database_filename):
     df.to_sql('DisasterMessages', engine, chunksize=5, index=False, if_exists='replace')
 
 
-# df2.to_sql('cat', engine, chunksize= 5, if_exists='replace')
-#
-# df2 = df[0:999]
+
 
 
 def main():
